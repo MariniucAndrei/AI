@@ -26,6 +26,11 @@ void init() {
 	cout << "1. Hill Climbing - First Improvement" << endl;
 	cout << "2. Hill Climbing - Best Improvement" << endl;
 	cout << "3. Simulated Annealing\n" << endl;
+	cout << "4. Hill Climbing - First Improvement + Simulated Annealing" << endl;
+	cout << "5. Hill Climbing - Best Improvement + Simulated Annealing" << endl;
+	cout << "6. Simulated Annealing + Hill Climbin - First Improvment" << endl;
+	cout << "7. Simulated Annealing + Hill Climbin - Best Improvment" << endl;
+
 	cin >> a_code;
 	system("CLS");
 
@@ -94,34 +99,41 @@ double random() {
 //	}
 //	cout << endl << "Minim obtinut:" << vBest.value;
 //}
-
+//double HCFirstSA() {
+//	HillClimbing deal = HillClimbing(n, 1);
+//	cout << "Introduceti temperatura:";
+//	int temp;
+//	cin >> temp;
+//	deal.SetTemperature(temp);
+//	deal.InitializationNeighbours();
+//	deal.SetMinTemperature();
+//}
 int main() {
 	char quit = 'y';
 	while (quit != 'n' && quit != 'N') {
 		init();
-		if (a_code <= 2)
+		if (a_code <= 2 || a_code == 4 || a_code == 5)
 		{
-			HillClimbing deal = HillClimbing(n, a_code);
+			HillClimbing deal = HillClimbing(n,p_code, a_code);
 			cout << "Introduceti temperatura:";
 			int temp;
 			cin >> temp;
 			deal.SetTemperature(temp);
 			deal.InitializationNeighbours();
 			deal.SetMinTemperature();
-			cout << "Minim obtinut" << deal.ExecuteAlgoritm();
+			cout << "Minim obtinut " << deal.ExecuteAlgoritm();
 		}
-		else
+		else if(a_code == 3 || a_code == 6 || a_code == 7)
 		{
-			SimulatedAnnelling Anne = SimulatedAnnelling(n, a_code);
+			SimulatedAnnelling Anne = SimulatedAnnelling(n, p_code,a_code);
 			cout << "Introduceti temperatura:";
 			int temp;
 			cin >> temp;
 			Anne.SetTemperature(temp);
 			Anne.InitializationNeighbours();
 			Anne.SetMinTemperature();
-			cout << "Minim obtinut" << Anne.ExecuteAlgoritm();
+			cout << "Minim obtinut " << Anne.ExecuteAlgoritm()<<" "<< Anne.numberOfExecutions;
 		}
-
 		cout << "\n\nContinue? Y/N:";
 		cin >> quit;
 	}
