@@ -13,8 +13,9 @@ private:
 public:
 	int Dim;
 	int Code;
+	int pbCode;
 	HillClimbing() {}
-	HillClimbing(int dim, int code);
+	HillClimbing(int dim, int code, int pbCode);
 	void SetTemperature(double temperature);
 	void SetMinTemperature();
 	void  InitializationNeighbours();
